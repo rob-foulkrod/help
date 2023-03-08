@@ -86,5 +86,6 @@ jobs:
       - name: swap web app to production
         id: swap-to-prod
         run: |
-          az webapp deployment slot swap -g help -n helpIneedsomebody --slot staging --target-slot production 
-          echo "::set-output name=webapp-url::https://$(az webapp show --name helpIneedsomebody -g help --query defaultHostName --output tsv)"
+          az webapp deployment slot swap -g help -n helpIneedsomebody --slot staging --target-slot production
+          echo "webapp-url=https://$(az webapp show --name helpIneedsomebody -g help --query defaultHostName --output tsv)" >> $GITHUB_OUTPUT
+
