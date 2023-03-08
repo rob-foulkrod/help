@@ -73,7 +73,7 @@ jobs:
       contents: read
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: ${{ steps.swap-to-prod.outputs.webapp-url }}
 
     steps:
       - name: 'Az CLI login'
@@ -85,5 +85,6 @@ jobs:
 
       - name: swap web app to production
         id: swap-to-prod
-        run: az webapp deployment slot swap -g help -n helpIneedsomebody --slot staging --target-slot production 
-        
+        run: |
+          az webapp deployment slot swap -g help -n helpIneedsomebody --slot staging --target-slot production 
+          echo "::set-output name=webapp-url::https://$(az webapp show --name helpIneedsomebody -g help --query defaultHostName --output tsv)"
