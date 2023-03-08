@@ -52,6 +52,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'helpIneedsomebody'
-          slot-name: 'Production'
+          slot-name: 'Staging'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_542242E80BAF4F89B39ED44618602FF8 }}
           package: .
